@@ -9,6 +9,7 @@ BroadCast 사용함
 MediaPlayer 미초기화시,
 notificatoin 이전/이후 버튼 미동작
 
-셔플 시, UI 업데이트 안 됨
+셔플 시, UI 업데이트 안 됨  
 
 
+https://youtube.com/shorts/rFo4Ee567e4?feature=share
