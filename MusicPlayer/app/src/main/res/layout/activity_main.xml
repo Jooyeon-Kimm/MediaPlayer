@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dl_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- 메인 컨텐츠 영역 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/img_bg">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_song_num"
+                android:text="[01/87]"
+                android:layout_marginEnd="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                app:layout_constraintTop_toTopOf="@id/tv_song_title"
+                app:layout_constraintStart_toStartOf="@id/guideLineForReplayIB"
+                app:layout_constraintEnd_toStartOf="@id/tv_song_title"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideLineForSongTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.2" />
+
+            <TextView
+                android:id="@+id/tv_song_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="30dp"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="[7/17] Your song.mp3"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="@id/guideLineForSongTitleEnd"
+                app:layout_constraintStart_toStartOf="@id/guideLineForSongTitle"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideLineForSongTitleEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.8" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideLineForAlbumImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.16" />
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_album_img"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideLineForAlbumImg"/>
+            <ImageView
+                android:id="@+id/iv_album"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/앨범_이미지"
+                android:src="@drawable/img_bg_album"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideLineForAlbumImg" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideLineForReplayIB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0" /> <!-- 태블릿에서는 0.15 -->
+
+            <ImageButton
+                android:id="@+id/ib_replay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="@string/반복여부_이미지버튼"
+                android:src="@drawable/btn_repeat_x_n"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@id/guideLineForReplayIB"
+                app:layout_constraintTop_toBottomOf="@+id/iv_album" />
+
+            <TextView
+                android:id="@+id/tv_cur_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00:00"
+                android:textColor="@color/pressedText"
+                app:layout_constraintBottom_toBottomOf="@id/ib_replay"
+                app:layout_constraintEnd_toStartOf="@id/sb"
+                app:layout_constraintStart_toEndOf="@id/ib_replay"
+                app:layout_constraintTop_toTopOf="@id/ib_replay" />
+
+            <!-- https://stackoverflow.com/questions/37644527/unwanted-padding-in-android-seekbar
+            Thumb 는 기본적으로 padding을 가지므로...
+            splitTrack=false사용자 정의 썸 그리기 기능이 막대에서 빈 공간으로 패딩되는 문제를 해결
+            시작/끝 패딩을 0으로 설정하여 전체 부모 너비를 보장
+            탐색 막대에 높이를 주어 배경 콘텐츠 위에 표시되도록 -->
+            <!-- 시크바 -->
+            <SeekBar
+                android:id="@+id/sb"
+                android:layout_width="0dp"
+                android:layout_height="15dp"
+                android:elevation="4dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:splitTrack="false"
+                android:progressDrawable="@drawable/seekbar_progress"
+                android:thumb="@drawable/thumb_with_padding"
+                app:layout_constraintBottom_toBottomOf="@id/tv_cur_time"
+                app:layout_constraintEnd_toStartOf="@id/tv_total_time"
+                app:layout_constraintStart_toEndOf="@id/tv_cur_time"
+                app:layout_constraintTop_toTopOf="@id/tv_cur_time"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <TextView
+                android:id="@+id/tv_total_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:03:30"
+                app:layout_constraintBottom_toBottomOf="@id/ib_replay"
+                app:layout_constraintEnd_toStartOf="@id/ib_shuffle"
+                app:layout_constraintStart_toEndOf="@id/sb"
+                app:layout_constraintTop_toTopOf="@id/ib_replay" />
+
+            <ImageButton
+                android:id="@+id/ib_shuffle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="@string/셔플_버튼"
+
+                android:src="@drawable/btn_order_n"
+                app:layout_constraintBottom_toBottomOf="@id/ib_replay"
+                app:layout_constraintEnd_toEndOf="@id/guideLineForShuffleIB"
+                app:layout_constraintStart_toEndOf="@id/tv_total_time"
+                app:layout_constraintTop_toTopOf="@id/ib_replay" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideLineForShuffleIB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="1" /> <!-- 태블릿에서는 0.85 -->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/sb"
+                app:layout_constraintStart_toStartOf="@id/sb"
+                app:layout_constraintTop_toBottomOf="@id/sb">
+
+
+                <ImageButton
+                    android:id="@+id/ib_prev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/이전곡_재생_버튼"
+                    android:src="@drawable/btn_prev_n"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/ib_play"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/재생_버튼"
+                    android:src="@drawable/btn_play_n"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ib_prev"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/ib_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/다음곡_재생_버튼"
+                    android:src="@drawable/btn_next_n"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ib_play"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/ib_list_sort"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:backgroundTint="@android:color/transparent"-->
+<!--                android:contentDescription="@string/노래_목록_버튼"-->
+<!--                android:src="@drawable/btn_list_n"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/cl_1"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/cl_1"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="@id/cl_1" />-->
+
+
+            <ImageButton
+                android:id="@+id/ib_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="@string/노래_목록_버튼"
+                android:src="@drawable/btn_list_n"
+                app:layout_constraintBottom_toBottomOf="@id/cl_1"
+                app:layout_constraintStart_toEndOf="@id/cl_1"
+                app:layout_constraintTop_toTopOf="@id/cl_1" />
+
+            <ImageButton
+                android:id="@+id/ib_vol_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/btn_bg_n"
+                android:contentDescription="@string/볼륨_줄이는_버튼"
+                android:src="@drawable/icon_vol_down"
+                app:layout_constraintEnd_toStartOf="@id/ib_mute"
+                app:layout_constraintTop_toBottomOf="@id/cl_1" />
+
+            <ImageButton
+                android:id="@+id/ib_mute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_bg_n"
+                android:contentDescription="@string/뮤트_버튼"
+                android:src="@drawable/icon_vol_mute"
+                app:layout_constraintEnd_toEndOf="@id/cl_1"
+                app:layout_constraintStart_toStartOf="@id/cl_1"
+                app:layout_constraintTop_toBottomOf="@id/cl_1" />
+
+            <ImageButton
+                android:id="@+id/ib_vol_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/btn_bg_n"
+                android:contentDescription="@string/뮤트_버튼"
+                android:src="@drawable/icon_vol_up"
+                app:layout_constraintStart_toEndOf="@id/ib_mute"
+                app:layout_constraintTop_toBottomOf="@id/cl_1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Drawer Layout(서랍) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="400dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="@color/semi_transparent_black"
+        android:scrollbars="vertical"/>
+    
+
+</androidx.drawerlayout.widget.DrawerLayout>

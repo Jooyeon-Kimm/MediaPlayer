@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">MusicPlayer</string>
+    <string name="앨범_이미지">앨범 이미지</string>
+    <string name="반복여부_이미지버튼">반복여부 이미지버튼</string>
+    <string name="셔플_버튼">셔플버튼</string>
+    <string name="이전곡_재생_버튼">이전곡 재생 버튼</string>
+    <string name="재생_버튼">재생 버튼</string>
+    <string name="다음곡_재생_버튼">다음곡 재생 버튼</string>
+    <string name="노래_목록_버튼">노래 목록 버튼</string>
+    <string name="볼륨_줄이는_버튼">볼륨 줄이는 버튼</string>
+    <string name="뮤트_버튼">뮤트 버튼</string>
+
+    <!-- Shared Preferences -->
+    <string name="SHARED_PREFERENCE_SPACE">sp</string>
+
+    <string name="MUSIC_PATH">MUSIC_FILE_PATH</string>
+    <string name="MUSIC_INDEX">MusicIndex</string>
+    <string name="MUSIC_DURATION">MusicDuration</string>
+
+
+    <string name="IS_MUTED">IsMuted</string>
+    <string name="IS_SHUFFLED">IsShuffled</string>
+    <string name="IS_PLAYED">IsPlayed</string>
+    <string name="IS_PHONE">IsPhone</string>
+
+    <string name="REPEAT_MODE">RepeatMode</string>
+    <string name="LAST_THUMB_LOC">lastThumbLocation</string>
+
+    <string name="CHANNEL_ID">MEDIA_PLAYER_CHANNEL</string>
+    <string name="뮤직아이콘">뮤직아이콘</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
